@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do List</title>
+    <style>
+      body {
+        background-color: #cccccc;
+        font-family: Arial;
+      }
+      .header .block {
+        margin: 10px auto;
+      }
+
+      .block {
+        text-align: center;
+        width: 300px;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .title {
+        text-align: center;
+        padding: 20px;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        background-color: blue;
+        border-radius: 10px 10px 0 0;
+      }
+
+      .content {
+        padding: 10px;
+        height: 150px;
+        overflow-y: auto;
+      }
+
+      input[type="text"] {
+        width: 90%;
+      }
+      textarea {
+        margin-top: 5px;
+        width: 90%;
+        height: 70%;
+      }
+      button {
+        margin: 10px;
+        padding: 3px 6px;
+      }
+
+      #add-todo {
+        background-color: #7bc9f0;
+        border-width: 1px;
+        border-color: #7bc9f0;
+      }
+
+      #add-todo:hover {
+        background-color: #3e3ef3;
+        font-weight: bolder;
+        color: white;
+      }
+
+      #settings {
+        text-align: center;
+      }
+
+      #main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      #main .block {
+        margin: 10px;
+        float: left;
+      }
+
+      .done-button {
+        background-color: #9ee99e;
+        border-width: 1px;
+        border-color: #9ee99e;
+      }
+      .done-button:hover {
+        background-color: #00ff00;
+        font-weight: bolder;
+        color: white;
+      }
+
+      .remove-button {
+        background-color: #f09595;
+        border-width: 1px;
+        border-color: #f09595;
+      }
+
+      .remove-button:hover {
+        background-color: #ff0000;
+        font-weight: bolder;
+        color: white;
+      }
+
+      .todo.completed .title,
+      .todo.completed .content {
+        text-decoration: line-through;
+      }
+
+      @media only screen and (max-width: 1295px) {
+        #main .block {
+          margin: 10px auto;
+        }
+      }
+    </style>
+  </head>
+  <!-- Header form for add new <<to do list>>: -->
+  <body>
+    <div class="header">
+      <div class="block">
+        <div class="title">
+          New Todo
+        </div>
+        <div class="content">
+          <input
+            type="text"
+            name="new-title"
+            id="new-title"
+            placeholder="Title"
+          />
+
+          <textarea
+            name="new-content"
+            id="new-content"
+            placeholder="Content"
+          ></textarea>
+        </div>
+        <div class="action-button">
+          <button type="button" id="add-todo">Add todo</button>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------------- -->
+
+    <!-- Setting buttons: -->
+    <div id="settings">
+      <label for="show-all">
+        <input
+          type="radio"
+          name="show-items"
+          id="show-all"
+          value="show-all"
+          checked
+        />
+        all
+      </label>
+      <label for="show-completed">
+        <input
+          type="radio"
+          name="show-items"
+          id="show-completed"
+          value="show-completed"
+        />
+        completed
+      </label>
+      <label for="show-not-completed">
+        <input
+          type="radio"
+          name="show-items"
+          id="show-not-completed"
+          value="show-not-completed"
+        />
+        not completed
+      </label>
+    </div>
+    <!-- --------------------------------------------- -->
+
+    <!-- Consider a page field for written <<to do list>>: -->
+    <div id="main"></div>
+    <!-- --------------------------------------------- -->
+
+    <!-- A sample for written <<to do lists>>: -->
+    <div id="sample" style="display: none;">
+      <div class="block todo">
+        <div class="title">
+          title
+        </div>
+        <div class="content">
+          content
+        </div>
+        <div class="action-button">
+          <button class="done-button">
+            Mark done
+          </button>
+          <button class="remove-button">
+            Remove todo
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- --------------------------------------------- -->
+
+    <!-- jQuery codes: -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+      const sample_long_text =
+        "Consequat cillum incididunt aute reprehenderit. Minim elit officia sint reprehenderit excepteur laborum non in Lorem do dolore dolore occaecat occaecat. Est aute velit officia commodo. Non non pariatur aliqua aliqua sunt elit incididunt voluptate duis excepteur. Deserunt consequat dolor proident cillum et deserunt nisi labore minim officia eiusmod fugiat. Aute voluptate sint mollit laboris proident nisi cillum in laboris exercitation nisi elit id.Nulla exercitation quis minim pariatur aute anim consectetur velit consequat ex velit. Enim anim sunt aliquip est. Lorem sit enim deserunt magna voluptate. Ipsum in eu aliqua voluptate mollit laboris qui nulla velit.Excepteur magna est est eu incididunt fugiat sunt anim adipisicing culpa laborum officia consectetur non. Ex minim reprehenderit proident dolore nostrud do aliqua fugiat amet pariatur reprehenderit enim consectetur. Nulla sunt adipisicing irure in veniam nulla do veniam sit culpa. Culpa aute nostrud culpa exercitation voluptate aliquip dolore reprehenderit aute veniam. Deserunt officia velit proident mollit occaecat ea veniam ea duis excepteur eu dolore amet exercitation. Amet officia nisi enim nulla voluptate enim sunt deserunt sunt cupidatat amet officia ullamco. Aliqua commodo proident cillum consectetur nulla.";
+      const sample_text =
+        "Amet qui Lorem qui dolore irure aliquip Lorem. Excepteur nostrud officia esse in voluptate duis. Voluptate qui enim eiusmod sit excepteur aliqua magna consectetur. Esse sit sit incididunt ullamco reprehenderit.";
+
+      const addTodo = function (title, content) {
+        $("#main").append($("#sample").html());
+        $("#main").children(".todo:last").children(".title").text(title);
+        $("#main").children(".todo:last").children(".content").text(content);
+      };
+      /* To do list samples: */
+      $(document).ready(function () {
+        addTodo("New todo", sample_text);
+        addTodo("New todo", sample_text);
+        addTodo("New todo", sample_text);
+        addTodo("New todo", sample_long_text);
+        addTodo("New todo", sample_long_text);
+        addTodo("New todo", sample_text);
+        /* --------------------------------------------- */
+
+        /* Add button functionality from header form: */
+        $("#add-todo").click(function () {
+          if ($("#new-title").val() == "") {
+            alert("title can't be empty");
+          } else {
+            addTodo($("#new-title").val(), $("#new-content").val());
+          }
+        });
+        /* --------------------------------------------- */
+
+        /* Setting items functionality: */
+        $("input[name=show-items]").click(function () {
+          if ($(this).val() == "show-all") {
+            $(".todo").show();
+          } else if ($(this).val() == "show-completed") {
+            $(".todo").hide();
+            $(".todo.completed").show();
+          } else {
+            $(".todo").show();
+            $(".todo.completed").hide();
+          }
+        });
+      });
+      /* --------------------------------------------- */
+
+      /* Mark done button functionality: */
+      $(document).on("click", ".done-button", function () {
+        let todo = $(this).parent().parent();
+        if (todo.hasClass("completed")) {
+          todo.removeClass("completed");
+          if ($("input[name=show-items]:checked").val() == "show-completed") {
+            todo.hide();
+          }
+        } else {
+          todo.addClass("completed");
+          if (
+            $("input[name=show-items]:checked").val() == "show-not-completed"
+          ) {
+            todo.hide();
+          }
+        }
+      });
+      /* --------------------------------------------- */
+
+      /* Remove button functionality: */
+      $(document).on("click", ".remove-button", function () {
+        $(this).parent().parent().remove();
+      });
+      /* --------------------------------------------- */
+    </script>
+    <!-- --------------------------------------------- -->
+  </body>
+</html>
